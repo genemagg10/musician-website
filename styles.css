@@ -6,13 +6,13 @@
 }
 
 :root {
-    --primary-color: #c084fc;
-    --secondary-color: #8b5cf6;
+    --primary-color: #8B0000;
+    --secondary-color: #A52A2A;
     --dark-bg: #0f0f0f;
     --dark-section: #1a1a1a;
     --text-primary: #ffffff;
     --text-secondary: #a1a1aa;
-    --accent-gradient: linear-gradient(135deg, #c084fc 0%, #8b5cf6 100%);
+    --accent-gradient: linear-gradient(135deg, #8B0000 0%, #A52A2A 100%);
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
 }
@@ -130,7 +130,7 @@ body {
     position: absolute;
     width: 150%;
     height: 150%;
-    background: radial-gradient(circle, rgba(192, 132, 252, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(139, 0, 0, 0.1) 0%, transparent 70%);
     animation: pulse 8s ease-in-out infinite;
 }
 
@@ -213,7 +213,7 @@ body {
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(192, 132, 252, 0.3);
+    box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
 }
 
 .btn-secondary {
@@ -282,7 +282,7 @@ section {
     aspect-ratio: 1;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 20px 60px rgba(192, 132, 252, 0.2);
+    box-shadow: 0 20px 60px rgba(139, 0, 0, 0.2);
 }
 
 .album-placeholder {
@@ -333,7 +333,7 @@ section {
 }
 
 .streaming-btn:hover {
-    background: rgba(192, 132, 252, 0.1);
+    background: rgba(139, 0, 0, 0.1);
     border-color: var(--primary-color);
     transform: translateY(-2px);
 }
@@ -406,7 +406,7 @@ section {
     justify-content: center;
     color: white;
     font-size: 1.2rem;
-    box-shadow: 0 20px 60px rgba(192, 132, 252, 0.2);
+    box-shadow: 0 20px 60px rgba(139, 0, 0, 0.2);
 }
 
 .about-text {
@@ -449,7 +449,7 @@ section {
 .event-card:hover {
     border-color: var(--primary-color);
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(192, 132, 252, 0.1);
+    box-shadow: 0 10px 30px rgba(139, 0, 0, 0.1);
 }
 
 .event-date {
@@ -501,7 +501,7 @@ section {
 
 .event-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 20px rgba(192, 132, 252, 0.3);
+    box-shadow: 0 5px 20px rgba(139, 0, 0, 0.3);
 }
 
 /* Contact Section */
