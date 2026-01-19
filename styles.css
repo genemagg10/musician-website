@@ -6,13 +6,13 @@
 }
 
 :root {
-    --primary-color: #8B0000;
-    --secondary-color: #A52A2A;
+    --primary-color: #FF69B4;
+    --secondary-color: #FFB6C1;
     --dark-bg: #0f0f0f;
     --dark-section: #1a1a1a;
     --text-primary: #ffffff;
     --text-secondary: #a1a1aa;
-    --accent-gradient: linear-gradient(135deg, #8B0000 0%, #A52A2A 100%);
+    --accent-gradient: linear-gradient(135deg, #FF69B4 0%, #FFB6C1 100%);
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
 }
