@@ -100,15 +100,95 @@ animateElements.forEach(el => {
     observer.observe(el);
 });
 
-// Track hover effect
-const tracks = document.querySelectorAll('.tracks li');
-tracks.forEach(track => {
-    track.addEventListener('mouseenter', function() {
-        this.style.backgroundColor = 'rgba(255, 105, 180, 0.05)';
+// Track preview player
+const previewPlayer = document.getElementById('preview-player');
+const previewIframe = document.getElementById('preview-iframe');
+const previewTrackName = previewPlayer.querySelector('.preview-track-name');
+const previewAlbumName = previewPlayer.querySelector('.preview-album-name');
+const previewNoId = previewPlayer.querySelector('.preview-no-id');
+const platformBtns = previewPlayer.querySelectorAll('.platform-btn');
+
+let currentPlatform = 'spotify';
+let currentTrack = null;
+
+function getSpotifyEmbedUrl(trackId) {
+    return `https://open.spotify.com/embed/track/${trackId}?utm_source=generator&theme=0`;
+}
+
+function getAppleEmbedUrl(albumId, trackId) {
+    return `https://embed.music.apple.com/us/album/${albumId}?i=${trackId}`;
+}
+
+function loadPreview(trackEl) {
+    const trackName = trackEl.dataset.trackName;
+    const albumName = trackEl.dataset.albumName;
+    const spotifyId = trackEl.dataset.spotify;
+    const appleAlbum = trackEl.dataset.appleAlbum;
+    const appleTrack = trackEl.dataset.appleTrack;
+
+    // Update display info
+    previewTrackName.textContent = trackName;
+    previewAlbumName.textContent = albumName;
+
+    // Mark the active track row
+    document.querySelectorAll('.tracks li.is-playing').forEach(li => li.classList.remove('is-playing'));
+    trackEl.classList.add('is-playing');
+    currentTrack = trackEl;
+
+    // Show the player
+    previewPlayer.classList.add('visible');
+    previewPlayer.setAttribute('aria-hidden', 'false');
+
+    // Load embed for current platform
+    const hasSpotify = spotifyId && spotifyId.trim() !== '';
+    const hasApple = appleAlbum && appleAlbum.trim() !== '' && appleTrack && appleTrack.trim() !== '';
+
+    if (currentPlatform === 'spotify' && hasSpotify) {
+        previewIframe.src = getSpotifyEmbedUrl(spotifyId.trim());
+        previewIframe.style.display = 'block';
+        previewNoId.style.display = 'none';
+    } else if (currentPlatform === 'apple' && hasApple) {
+        previewIframe.src = getAppleEmbedUrl(appleAlbum.trim(), appleTrack.trim());
+        previewIframe.style.display = 'block';
+        previewNoId.style.display = 'none';
+    } else {
+        previewIframe.src = '';
+        previewIframe.style.display = 'none';
+        previewNoId.style.display = 'block';
+    }
+}
+
+// Click any track row to preview it
+document.querySelectorAll('.tracks li').forEach(trackEl => {
+    trackEl.addEventListener('click', () => loadPreview(trackEl));
+});
+
+// Platform toggle
+platformBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        currentPlatform = btn.dataset.platform;
+        platformBtns.forEach(b => {
+            b.classList.toggle('active', b === btn);
+            b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+        });
+        if (currentTrack) loadPreview(currentTrack);
     });
-    track.addEventListener('mouseleave', function() {
-        this.style.backgroundColor = 'transparent';
-    });
+});
+
+// Close preview player
+document.getElementById('preview-close').addEventListener('click', () => {
+    previewPlayer.classList.remove('visible');
+    previewPlayer.setAttribute('aria-hidden', 'true');
+    previewIframe.src = '';
+    document.querySelectorAll('.tracks li.is-playing').forEach(li => li.classList.remove('is-playing'));
+    currentTrack = null;
+});
+
+// Close on Escape key
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && previewPlayer.classList.contains('visible')) {
+        document.getElementById('preview-close').click();
+    }
 });
 
 // Parallax effect for hero section
