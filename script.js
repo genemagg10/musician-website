@@ -43,13 +43,36 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// Discography album switching
+const albumCards = document.querySelectorAll('.album-card');
+const albumPanels = document.querySelectorAll('.album-panel');
+
+albumCards.forEach(card => {
+    card.addEventListener('click', () => {
+        const targetAlbum = card.dataset.album;
+
+        // Update card active states
+        albumCards.forEach(c => {
+            c.classList.remove('active');
+            c.setAttribute('aria-pressed', 'false');
+        });
+        card.classList.add('active');
+        card.setAttribute('aria-pressed', 'true');
+
+        // Update panel visibility
+        albumPanels.forEach(panel => panel.classList.remove('active'));
+        const targetPanel = document.getElementById('panel-' + targetAlbum);
+        if (targetPanel) {
+            targetPanel.classList.add('active');
+        }
+    });
+});
+
 // Newsletter form submission
 const newsletterForm = document.querySelector('.newsletter-form');
 newsletterForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const email = newsletterForm.querySelector('input[type="email"]').value;
-
-    // Here you would typically send the email to your backend
     alert(`Thank you for subscribing! We'll send updates to ${email}`);
     newsletterForm.reset();
 });
@@ -69,8 +92,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Observe elements for animation
-const animateElements = document.querySelectorAll('.event-card, .album-featured, .about-content, .tracklist');
+const animateElements = document.querySelectorAll('.event-card, .album-grid, .about-content, .tracklist');
 animateElements.forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
@@ -78,13 +100,12 @@ animateElements.forEach(el => {
     observer.observe(el);
 });
 
-// Track hover effect with sound wave animation
+// Track hover effect
 const tracks = document.querySelectorAll('.tracks li');
 tracks.forEach(track => {
     track.addEventListener('mouseenter', function() {
-        this.style.backgroundColor = 'rgba(192, 132, 252, 0.05)';
+        this.style.backgroundColor = 'rgba(255, 105, 180, 0.05)';
     });
-
     track.addEventListener('mouseleave', function() {
         this.style.backgroundColor = 'transparent';
     });
@@ -100,7 +121,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Add active state to navigation based on scroll position
+// Active nav link based on scroll position
 const sections = document.querySelectorAll('section[id]');
 const navItems = document.querySelectorAll('.nav-menu a');
 
