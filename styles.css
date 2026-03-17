@@ -295,17 +295,11 @@ section {
     position: relative;
 }
 
-.artist-placeholder {
+.about-photo {
+    width: 100%;
     aspect-ratio: 3/4;
-    background: var(--accent-gradient);
+    object-fit: cover;
     border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-family: var(--font-heading);
-    font-size: 2rem;
-    font-weight: 700;
     box-shadow: 0 20px 60px rgba(139, 0, 0, 0.2);
 }
 
