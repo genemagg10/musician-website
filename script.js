@@ -68,6 +68,29 @@ albumCards.forEach(card => {
     });
 });
 
+// Writings tab switching
+const writingsTabs = document.querySelectorAll('.writings-tab');
+const writingsPanels = document.querySelectorAll('.writings-panel');
+
+writingsTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const targetTab = tab.dataset.tab;
+
+        writingsTabs.forEach(t => {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+
+        writingsPanels.forEach(panel => panel.classList.remove('active'));
+        const targetPanel = document.getElementById('tab-' + targetTab);
+        if (targetPanel) {
+            targetPanel.classList.add('active');
+        }
+    });
+});
+
 // Newsletter form submission
 const newsletterForm = document.querySelector('.newsletter-form');
 newsletterForm.addEventListener('submit', (e) => {
@@ -92,7 +115,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-const animateElements = document.querySelectorAll('.event-card, .album-grid, .about-content, .tracklist');
+const animateElements = document.querySelectorAll('.album-grid, .about-content, .tracklist, .screenplay-card, .writing-piece, .reviews-section');
 animateElements.forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';

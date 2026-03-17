@@ -368,7 +368,7 @@ section {
 /* Album Selector Grid */
 .album-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
     margin-bottom: 3rem;
 }
@@ -967,6 +967,221 @@ section {
     color: var(--primary-color);
 }
 
+/* Reviews Section */
+.reviews-section {
+    margin-top: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.reviews-section h4 {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
+}
+
+.reviews-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.review-card {
+    padding: 1.25rem 1.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 3px solid var(--primary-color);
+    border-radius: 0 8px 8px 0;
+}
+
+.review-card p {
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+}
+
+.review-card cite {
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* Writings Section */
+.writings-section {
+    background: var(--dark-section);
+}
+
+.writings-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+}
+
+.writings-tab {
+    padding: 0.75rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50px;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.writings-tab:hover {
+    border-color: rgba(255, 105, 180, 0.4);
+    color: var(--text-primary);
+}
+
+.writings-tab.active {
+    background: var(--accent-gradient);
+    border-color: transparent;
+    color: white;
+}
+
+.writings-panel {
+    display: none;
+}
+
+.writings-panel.active {
+    display: block;
+    animation: panelFadeIn 0.4s ease;
+}
+
+/* Screenplay Cards */
+.screenplay-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.screenplay-card:hover {
+    border-color: rgba(255, 105, 180, 0.3);
+}
+
+.screenplay-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.screenplay-header h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+}
+
+.screenplay-type {
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.screenplay-description {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+}
+
+.screenplay-credits {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+/* Awards */
+.awards-list {
+    display: grid;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.award-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 105, 180, 0.05);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 105, 180, 0.1);
+}
+
+.award-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    line-height: 1;
+}
+
+.award-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.award-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.award-category {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* Songs & Poems */
+.writing-piece {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.writing-piece h3 {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.writing-type {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 1.5rem;
+}
+
+.poem-text {
+    color: var(--text-secondary);
+    line-height: 1.9;
+    font-size: 1.05rem;
+}
+
+.poem-text p {
+    margin-bottom: 1.5rem;
+}
+
+.poem-text em {
+    color: var(--text-primary);
+    font-style: italic;
+}
+
 /* Responsive Design */
 @media (max-width: 968px) {
     .album-featured,
@@ -1006,6 +1221,16 @@ section {
 
     .album-featured {
         padding: 1.5rem;
+    }
+
+    .screenplay-card,
+    .writing-piece {
+        padding: 1.5rem;
+    }
+
+    .screenplay-header {
+        flex-direction: column;
+        gap: 0.25rem;
     }
 }
 
