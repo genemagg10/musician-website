@@ -91,15 +91,6 @@ writingsTabs.forEach(tab => {
     });
 });
 
-// Newsletter form submission
-const newsletterForm = document.querySelector('.newsletter-form');
-newsletterForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = newsletterForm.querySelector('input[type="email"]').value;
-    alert(`Thank you for subscribing! We'll send updates to ${email}`);
-    newsletterForm.reset();
-});
-
 // Intersection Observer for fade-in animations
 const observerOptions = {
     threshold: 0.1,
@@ -115,7 +106,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-const animateElements = document.querySelectorAll('.album-grid, .about-content, .tracklist, .screenplay-card, .writing-piece, .reviews-section');
+const animateElements = document.querySelectorAll('.album-grid, .about-content, .tracklist, .screenplay-card, .writing-piece, .reviews-list');
 animateElements.forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';

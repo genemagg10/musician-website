@@ -975,19 +975,9 @@ section {
     color: var(--primary-color);
 }
 
-/* Reviews Section */
-.reviews-section {
-    margin-top: 2rem;
-    background: rgba(255, 255, 255, 0.02);
-    padding: 2rem;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.reviews-section h4 {
-    font-family: var(--font-heading);
-    font-size: 1.4rem;
-    margin-bottom: 1.5rem;
+/* Reviews Section (top-level) */
+.reviews-top-section {
+    background: var(--dark-bg);
 }
 
 .reviews-list {
