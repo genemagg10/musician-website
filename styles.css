@@ -402,6 +402,12 @@ section {
     overflow: hidden;
 }
 
+.album-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .album-thumb-placeholder {
     width: 100%;
     height: 100%;
@@ -481,6 +487,12 @@ section {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.album-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .album-placeholder {
