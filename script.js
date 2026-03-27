@@ -35,10 +35,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const navbar = document.querySelector('.navbar');
 window.addEventListener('scroll', () => {
     if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(15, 15, 15, 0.98)';
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
+        navbar.style.background = 'rgba(13, 10, 8, 0.98)';
+        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(212, 165, 116, 0.1)';
     } else {
-        navbar.style.background = 'rgba(15, 15, 15, 0.95)';
+        navbar.style.background = 'rgba(13, 10, 8, 0.92)';
         navbar.style.boxShadow = 'none';
     }
 });
@@ -91,15 +91,6 @@ writingsTabs.forEach(tab => {
     });
 });
 
-// Newsletter form submission
-const newsletterForm = document.querySelector('.newsletter-form');
-newsletterForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = newsletterForm.querySelector('input[type="email"]').value;
-    alert(`Thank you for subscribing! We'll send updates to ${email}`);
-    newsletterForm.reset();
-});
-
 // Intersection Observer for fade-in animations
 const observerOptions = {
     threshold: 0.1,
@@ -115,7 +106,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-const animateElements = document.querySelectorAll('.album-grid, .about-content, .tracklist, .screenplay-card, .writing-piece, .reviews-section');
+const animateElements = document.querySelectorAll('.album-grid, .about-content, .tracklist, .screenplay-card, .writing-piece, .reviews-list');
 animateElements.forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
