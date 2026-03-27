@@ -35,10 +35,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const navbar = document.querySelector('.navbar');
 window.addEventListener('scroll', () => {
     if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(15, 15, 15, 0.98)';
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
+        navbar.style.background = 'rgba(13, 10, 8, 0.98)';
+        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.4), 0 1px 0 rgba(212, 165, 116, 0.1)';
     } else {
-        navbar.style.background = 'rgba(15, 15, 15, 0.95)';
+        navbar.style.background = 'rgba(13, 10, 8, 0.92)';
         navbar.style.boxShadow = 'none';
     }
 });
