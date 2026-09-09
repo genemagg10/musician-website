@@ -22,7 +22,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            const offsetTop = target.offsetTop - 70;
+            const offsetTop = target.getBoundingClientRect().top + window.pageYOffset - 70;
             window.scrollTo({
                 top: offsetTop,
                 behavior: 'smooth'
@@ -106,7 +106,7 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-const animateElements = document.querySelectorAll('.album-grid, .about-content, .tracklist, .screenplay-card, .writing-piece, .reviews-list');
+const animateElements = document.querySelectorAll('.album-grid, .about-content, .tracklist, .standalone-listen, .screenplay-card, .writing-piece, .reviews-list');
 animateElements.forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
@@ -117,10 +117,13 @@ animateElements.forEach(el => {
 // Track preview player
 const previewPlayer = document.getElementById('preview-player');
 const previewIframe = document.getElementById('preview-iframe');
+const previewAudio = document.getElementById('preview-audio');
+const previewLabel = previewPlayer.querySelector('.preview-label');
 const previewTrackName = previewPlayer.querySelector('.preview-track-name');
 const previewAlbumName = previewPlayer.querySelector('.preview-album-name');
 const previewNoId = previewPlayer.querySelector('.preview-no-id');
 const platformBtns = previewPlayer.querySelectorAll('.platform-btn');
+const standalonePlayers = document.querySelectorAll('.standalone-audio');
 
 let currentPlatform = 'spotify';
 let currentTrack = null;
@@ -133,9 +136,24 @@ function getAppleEmbedUrl(albumId, trackId) {
     return `https://embed.music.apple.com/us/album/${albumId}?i=${trackId}`;
 }
 
+function pauseStandalonePlayers(except) {
+    standalonePlayers.forEach(player => {
+        if (player !== except && !player.paused) {
+            player.pause();
+        }
+    });
+}
+
+function stopLocalPreviewAudio() {
+    previewAudio.pause();
+    previewAudio.removeAttribute('src');
+    previewAudio.load();
+}
+
 function loadPreview(trackEl) {
     const trackName = trackEl.dataset.trackName;
     const albumName = trackEl.dataset.albumName;
+    const localAudio = trackEl.dataset.audio;
     const spotifyId = trackEl.dataset.spotify;
     const appleAlbum = trackEl.dataset.appleAlbum;
     const appleTrack = trackEl.dataset.appleTrack;
@@ -153,9 +171,26 @@ function loadPreview(trackEl) {
     previewPlayer.classList.add('visible');
     previewPlayer.setAttribute('aria-hidden', 'false');
 
-    // Load embed for current platform
+    const hasLocalAudio = localAudio && localAudio.trim() !== '';
     const hasSpotify = spotifyId && spotifyId.trim() !== '';
     const hasApple = appleAlbum && appleAlbum.trim() !== '' && appleTrack && appleTrack.trim() !== '';
+
+    pauseStandalonePlayers();
+
+    if (hasLocalAudio) {
+        previewPlayer.classList.add('is-local-audio');
+        previewLabel.textContent = 'Now Playing';
+        previewIframe.src = '';
+        previewIframe.style.display = 'none';
+        previewNoId.style.display = 'none';
+        previewAudio.src = localAudio.trim();
+        previewAudio.play().catch(() => {});
+        return;
+    }
+
+    previewPlayer.classList.remove('is-local-audio');
+    previewLabel.textContent = 'Now Previewing';
+    stopLocalPreviewAudio();
 
     if (currentPlatform === 'spotify' && hasSpotify) {
         previewIframe.src = getSpotifyEmbedUrl(spotifyId.trim());
@@ -177,6 +212,34 @@ document.querySelectorAll('.tracks li').forEach(trackEl => {
     trackEl.addEventListener('click', () => loadPreview(trackEl));
 });
 
+// "New take" badge scrolls to the standalone player without opening the preview bar
+document.querySelectorAll('.track-badge').forEach(badge => {
+    badge.addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+});
+
+// Only one local player at a time
+standalonePlayers.forEach(player => {
+    player.addEventListener('play', () => {
+        pauseStandalonePlayers(player);
+        if (!previewAudio.paused) {
+            previewAudio.pause();
+        }
+    });
+});
+
+const standaloneNoReason = document.getElementById('standalone-no-reason-audio');
+const standaloneNoReasonStatus = document.getElementById('standalone-no-reason-status');
+if (standaloneNoReason && standaloneNoReasonStatus) {
+    standaloneNoReason.addEventListener('error', () => {
+        standaloneNoReasonStatus.hidden = false;
+    });
+    standaloneNoReason.addEventListener('loadeddata', () => {
+        standaloneNoReasonStatus.hidden = true;
+    });
+}
+
 // Platform toggle
 platformBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -192,8 +255,11 @@ platformBtns.forEach(btn => {
 // Close preview player
 document.getElementById('preview-close').addEventListener('click', () => {
     previewPlayer.classList.remove('visible');
+    previewPlayer.classList.remove('is-local-audio');
     previewPlayer.setAttribute('aria-hidden', 'true');
     previewIframe.src = '';
+    stopLocalPreviewAudio();
+    previewLabel.textContent = 'Now Previewing';
     document.querySelectorAll('.tracks li.is-playing').forEach(li => li.classList.remove('is-playing'));
     currentTrack = null;
 });

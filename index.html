@@ -83,6 +83,7 @@
         <div class="container">
             <div class="about-content">
                 <div class="about-image">
+                    <!-- TODO: replace images/about.jpeg with a different-background about shot (do not invent a mural). -->
                     <img src="images/about.jpeg" alt="Alberto standing in front of a colorful singer mural" class="about-photo">
                 </div>
                 <div class="about-text">
@@ -122,6 +123,35 @@
     <section id="discography" class="discography-section">
         <div class="container">
             <h2 class="section-title">Discography</h2>
+
+            <!-- Standalone recordings — playable outside the album tracklist -->
+            <div class="standalone-listen" id="listen">
+                <h3 class="standalone-heading">Standalone Recordings</h3>
+                <p class="standalone-intro">Listen here on their own — both songs also appear on <em>Love Moods</em>.</p>
+                <div class="standalone-grid">
+                    <article class="standalone-card" id="listen-no-reason">
+                        <div class="standalone-card-top">
+                            <span class="standalone-badge">New take</span>
+                            <span class="standalone-from">From Love Moods</span>
+                        </div>
+                        <h4>No Reason, No Rhyme</h4>
+                        <p class="standalone-note">A new iPhone voice-memo take of the album original. ~3:09</p>
+                        <audio class="standalone-audio" id="standalone-no-reason-audio" controls preload="metadata" src="audio/no-reason-no-rhyme.mp3">
+                            Your browser does not support the audio player.
+                        </audio>
+                        <p class="standalone-audio-status" id="standalone-no-reason-status" hidden>This recording is being added. Please check back shortly.</p>
+                    </article>
+                    <article class="standalone-card" id="listen-old-men">
+                        <div class="standalone-card-top">
+                            <span class="standalone-badge soon">Coming soon</span>
+                            <span class="standalone-from">From Love Moods</span>
+                        </div>
+                        <h4>Old Men Sing The Blues</h4>
+                        <p class="standalone-note">A matching standalone player will appear here once the audio file is ready.</p>
+                        <div class="standalone-soon" role="status">Audio coming soon</div>
+                    </article>
+                </div>
+            </div>
 
             <!-- Album Selector -->
             <div class="album-grid">
@@ -214,7 +244,7 @@
                             <li data-spotify="" data-apple-album="" data-apple-track="" data-track-name="Dirty, Low Down and Bad" data-album-name="Love Moods"><span class="track-name">Dirty, Low Down and Bad</span><span class="track-duration">2:39</span></li>
                             <li data-spotify="" data-apple-album="" data-apple-track="" data-track-name="Birds" data-album-name="Love Moods"><span class="track-name">Birds</span><span class="track-duration">3:52</span></li>
                             <li data-spotify="" data-apple-album="" data-apple-track="" data-track-name="Old Men Sing The Blues" data-album-name="Love Moods"><span class="track-name">Old Men Sing The Blues</span><span class="track-duration">5:59</span></li>
-                            <li data-spotify="" data-apple-album="" data-apple-track="" data-track-name="No Reason, No Rhyme" data-album-name="Love Moods"><span class="track-name">No Reason, No Rhyme</span><span class="track-duration">4:32</span></li>
+                            <li data-spotify="" data-apple-album="" data-apple-track="" data-audio="audio/no-reason-no-rhyme.mp3" data-track-name="No Reason, No Rhyme" data-album-name="Love Moods"><span class="track-name">No Reason, No Rhyme <a href="#listen-no-reason" class="track-badge">New take</a></span><span class="track-duration">4:32</span></li>
                             <li data-spotify="" data-apple-album="" data-apple-track="" data-track-name="Think of Me" data-album-name="Love Moods"><span class="track-name">Think of Me</span><span class="track-duration">3:18</span></li>
                         </ol>
                     </div>
@@ -237,6 +267,7 @@
             </div>
 
             <!-- Screenplays Tab -->
+            <!-- TODO: add Bonnie + Alberto mural photo for this section when supplied. A studio band group photo may also arrive later. Do not invent mural photos. -->
             <div class="writings-panel active" id="tab-screenplays" role="tabpanel">
 
                 <div class="screenplay-card">
@@ -490,9 +521,10 @@
             <iframe id="preview-iframe" src="" frameborder="0"
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                 loading="lazy" title="Track preview player"></iframe>
+            <audio id="preview-audio" controls preload="metadata"></audio>
             <div class="preview-no-id">
                 <p>Track preview not yet available.</p>
-                <p class="preview-no-id-sub">Add Spotify and Apple Music track IDs to the <code>data-spotify</code> and <code>data-apple-*</code> attributes in <code>index.html</code> to enable previews.</p>
+                <p class="preview-no-id-sub">Streaming IDs have not been added for this track yet.</p>
             </div>
         </div>
     </div>
