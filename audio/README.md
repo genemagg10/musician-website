@@ -1,11 +1,4 @@
 # Audio
 
-Place the new *No Reason, No Rhyme* voice-memo take here as:
-
-```
-no-reason-no-rhyme.mp3
-```
-
-Expected: ~2.3MB, about 3:09. The standalone player and the Love Moods track-row preview are already wired to this path.
-
-*Old Men Sing The Blues* has no file yet — leave it as “Audio coming soon” until Geno supplies it.
+- `no-reason-no-rhyme.mp3` — new iPhone voice-memo take of *No Reason, No Rhyme* (~2.3MB, 3:09). Wired to the standalone player and the Love Moods track-row preview.
+- *Old Men Sing The Blues* — no file yet. Keep the standalone card as “Audio coming soon” until Geno supplies it.

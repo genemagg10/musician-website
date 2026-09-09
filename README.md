@@ -23,15 +23,11 @@ The Music / Discography section now has a **Standalone Recordings** area so visi
 | **No Reason, No Rhyme** | New iPhone voice-memo take (~3:09). Native `<audio controls>` player wired to `audio/no-reason-no-rhyme.mp3`. Clicking the album track also plays this file in the bottom preview bar. |
 | **Old Men Sing The Blues** | Still on the *Love Moods* tracklist. Matching standalone card with **Audio coming soon** until the file is supplied. No Spotify / Apple IDs invented. |
 
-### Audio file for the coordinator
+### Audio
 
-If `audio/no-reason-no-rhyme.mp3` is not on this branch yet, drop the ~2.3MB voice-memo MP3 here:
+`audio/no-reason-no-rhyme.mp3` is on this branch (iPhone voice memo, ~2.3MB, 3:09). The standalone player and the Love Moods track-row preview both use that path. Do not invent streaming IDs.
 
-```
-audio/no-reason-no-rhyme.mp3
-```
-
-The player is already pointed at that path. Do not invent streaming IDs.
+*Old Men Sing The Blues* still needs a file from Geno.
 
 ## Photo TODOs
 
